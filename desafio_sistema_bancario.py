@@ -1,3 +1,4 @@
+from os import system
 saldo = 0
 LIMITE_SAQUE_DIARIO = 3
 LIMITE_POR_SAQUE = 500
@@ -11,18 +12,19 @@ while True:
 
     if escolha[0] == 'd' or escolha[0] == 'D':
 
-        valor_deposito = input('Qual valor deseja depositar? ')
+        valor_deposito = float(input('Qual valor deseja depositar? '))
 
-        if valor_deposito[0] == '-':
+        if valor_deposito < 0:
             print('Não é possivel depositar numero negativos')
             continue
 
-        saldo += int(valor_deposito)
+        saldo += valor_deposito
 
         movimentacoes.append(
             f'Foi depositado o valor de R${valor_deposito:.2f}'
             f' e o saldo da conta ficou R${saldo:.2f}')
-
+        system('cls')
+        print('Deposito efetuado com sucesso!')
         print(f'O seu saldo agora é de R${saldo:.2f}')
 
     elif escolha[0] == 's' or escolha[0] == 'S':
@@ -43,24 +45,26 @@ while True:
             print('O limite de valor do saque é de R$500,00')
             continue
 
-        print('Sacando dinhero....')
-
         saldo -= saque
         quantidade_de_saque += 1
         movimentacoes.append(
             f'Foi sacado o valor de R${saque:.2f} e o saldo da conta ficou '
             f'em R${saldo:.2f}')
 
+        system('cls')
+        print('Sacando dinhero....')
         print(
             f'Dinheiro sacado com sucesso, seu saldo agora é de R${saldo:.2f}'
         )
 
     elif escolha[0] == 'e' or escolha[0] == 'E':
 
+        system('cls')
+        print('Extrato'.center(100, '='))
         for movimentacao in movimentacoes:
             print(movimentacao)
-
-        print(f"O Saldo da conta atual da conta é de R${saldo:.2f}")
+        print(f"\nO Saldo da conta atual da conta é de R${saldo:.2f}")
+        print('=' * 100)
 
     elif escolha == 'f' or escolha == 'F':
         break
