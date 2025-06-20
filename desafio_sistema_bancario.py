@@ -61,9 +61,12 @@ while True:
 
         system('cls')
         print('Extrato'.center(100, '='))
-        for movimentacao in movimentacoes:
-            print(movimentacao)
-        print(f"\nO Saldo da conta atual da conta é de R${saldo:.2f}")
+        if movimentacoes:
+            for movimentacao in movimentacoes:
+                print(movimentacao)
+            print(f"\nO Saldo da conta atual da conta é de R${saldo:.2f}")
+        else:
+            print('Não houve movimentações')
         print('=' * 100)
 
     elif escolha == 'f' or escolha == 'F':
